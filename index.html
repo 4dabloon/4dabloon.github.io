@@ -1,122 +1,125 @@
-# Интерпретируемый язык программирования hindi
-Интерпретатор языка написан на языке программирования _F#_
-
-## Авторы
-
-|        Имя        |                  Роль в проекте                  |
-|:-----------------:|:------------------------------------------------:|
-| Кузнецов Мстислав |               Разработчик парсера                |
-| Личковаха Алексей |   Разработчик интерпретатора, создание токенов   |
-| Барабанов Глеб    |        Создание токенов, обработка ошибок        |
-
-## Описание интерпретатора
-Интерпретация происходит в два этапа:
-- Сначала парсер `parser.fs` производит преобразование кода в набор токенов используя для этого библиотеку FParsec.
-- Для всех токенов реализован общий абстрактный класс методом evaluate, который имплементирован для всех токенов. Для хранения переменных использована структура `Map<string, hindi_types>`. Реализации токенов хранятся в файле `tokens.fs`.
-
-
-# Реализованные возможности
-
-## Типизация
-В языке hindi реализованы следующие типы данных:
-  - `real`: целое число или число с плавающей точкой;
-  - `stri`: строка;
-  - `bool`: логическое значение.
-
-## Операторы
-В языке hindi поддерживаются следующие операторы:
-
-###  Арифметические операторы:
-  - '+': сложение;
-  - '-': вычитание;
-  - '*': умножение;
-  - '/': деление;
-  - '//': целочисленное деление.
-
-### Логические операторы:
-  - '&': логическое И;
-  - '/': логическое ИЛИ.
-
-### Операторы сравнения
-  - '>': больше;
-  - '>=': больше или равно;
-  - '<': меньше;
-  - '<=': меньше или равно;
-  - '==': равно;
-  - '!=': не равно.
-
-### Функции
-Поддерживается определение и вызов функций.
-
-### Встроенные функции
-Доступны следующие встроенные функции:
-  - 'hin_real()': Считывает число с плавающей точкой из потока ввода и возвращает его значение;
-  - 'hin_stri()': Считывает строку из потока ввода и возвращает ее значение;
-  - 'hout(expr_1, ..., expr_n): Выводит значения выражений expr_1, ..., expr_n в поток вывода.
-
-### Рекурсивный вызов функций
-Поддерживается рекурсивный вызов функций.
-
-### Лямбда функции
-Поддерживается вызов лямбда функций.
-
-### Замыкание
-Реализована поддержка замыканий.
-
-### Обработка ошибок
-Осуществляется валидация:
-  - Названий переменных;
-  - Ввода данных.
-
-## Примеры
-
-### Объявление переменных
-```
-stri d = "Hello world!";
-real a = 1;
-real b = 0.5;
-stri e = hin_stri();
-real c = hin_real();
-bool tru = TRUE;
-bool fls = FLSE;
-```
-
-### Пример объявления функции
-```
-deff doubler = lmbd (real n) {
-    n * 2
+<h1 id="-hindi">Интерпретируемый язык программирования hindi</h1>
+<p>Интерпретатор языка написан на языке программирования <em>F#</em></p>
+<h2 id="-">Авторы</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">Имя</th>
+<th style="text-align:center">Роль в проекте</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">Кузнецов Мстислав</td>
+<td style="text-align:center">Разработчик парсера</td>
+</tr>
+<tr>
+<td style="text-align:center">Личковаха Алексей</td>
+<td style="text-align:center">Разработчик интерпретатора, создание токенов</td>
+</tr>
+<tr>
+<td style="text-align:center">Барабанов Глеб</td>
+<td style="text-align:center">Создание токенов, обработка ошибок</td>
+</tr>
+</tbody>
+</table>
+<h2 id="-">Описание интерпретатора</h2>
+<p>Интерпретация происходит в два этапа:</p>
+<ul>
+<li>Сначала парсер <code>parser.fs</code> производит преобразование кода в набор токенов используя для этого библиотеку FParsec.</li>
+<li>Для всех токенов реализован общий абстрактный класс методом evaluate, который имплементирован для всех токенов. Для хранения переменных использована структура <code>Map&lt;string, hindi_types&gt;</code>. Реализации токенов хранятся в файле <code>tokens.fs</code>.</li>
+</ul>
+<h1 id="-">Реализованные возможности</h1>
+<h2 id="-">Типизация</h2>
+<p>В языке hindi реализованы следующие типы данных:</p>
+<ul>
+<li><code>real</code>: целое число или число с плавающей точкой;</li>
+<li><code>stri</code>: строка;</li>
+<li><code>bool</code>: логическое значение.</li>
+</ul>
+<h2 id="-">Операторы</h2>
+<p>В языке hindi поддерживаются следующие операторы:</p>
+<h3 id="-">Арифметические операторы:</h3>
+<ul>
+<li>&#39;+&#39;: сложение;</li>
+<li>&#39;-&#39;: вычитание;</li>
+<li>&#39;*&#39;: умножение;</li>
+<li>&#39;/&#39;: деление;</li>
+<li>&#39;//&#39;: целочисленное деление.</li>
+</ul>
+<h3 id="-">Логические операторы:</h3>
+<ul>
+<li>&#39;&amp;&#39;: логическое И;</li>
+<li>&#39;/&#39;: логическое ИЛИ.</li>
+</ul>
+<h3 id="-">Операторы сравнения</h3>
+<ul>
+<li>&#39;&gt;&#39;: больше;</li>
+<li>&#39;&gt;=&#39;: больше или равно;</li>
+<li>&#39;&lt;&#39;: меньше;</li>
+<li>&#39;&lt;=&#39;: меньше или равно;</li>
+<li>&#39;==&#39;: равно;</li>
+<li>&#39;!=&#39;: не равно.</li>
+</ul>
+<h3 id="-">Функции</h3>
+<p>Поддерживается определение и вызов функций.</p>
+<h3 id="-">Встроенные функции</h3>
+<p>Доступны следующие встроенные функции:</p>
+<ul>
+<li>&#39;hin_real()&#39;: Считывает число с плавающей точкой из потока ввода и возвращает его значение;</li>
+<li>&#39;hin_stri()&#39;: Считывает строку из потока ввода и возвращает ее значение;</li>
+<li>&#39;hout(expr_1, ..., expr_n): Выводит значения выражений expr_1, ..., expr_n в поток вывода.</li>
+</ul>
+<h3 id="-">Рекурсивный вызов функций</h3>
+<p>Поддерживается рекурсивный вызов функций.</p>
+<h3 id="-">Лямбда функции</h3>
+<p>Поддерживается вызов лямбда функций.</p>
+<h3 id="-">Замыкание</h3>
+<p>Реализована поддержка замыканий.</p>
+<h3 id="-">Обработка ошибок</h3>
+<p>Осуществляется валидация:</p>
+<ul>
+<li>Названий переменных;</li>
+<li>Ввода данных.</li>
+</ul>
+<h2 id="-">Примеры</h2>
+<h3 id="-">Объявление переменных</h3>
+<pre><code><span class="hljs-attribute">stri d</span> = <span class="hljs-string">"Hello world!"</span>;
+<span class="hljs-attribute">real a</span> = 1;
+<span class="hljs-attribute">real b</span> = 0.5;
+<span class="hljs-attribute">stri e</span> = hin_stri();
+<span class="hljs-attribute">real c</span> = hin_real();
+<span class="hljs-attribute">bool tru</span> = TRUE;
+<span class="hljs-attribute">bool fls</span> = FLSE;
+</code></pre><h3 id="-">Пример объявления функции</h3>
+<pre><code>deff doubler = lmbd (real <span class="hljs-built_in">n</span>) {
+    <span class="hljs-built_in">n</span> * <span class="hljs-number">2</span>
 }
-```
-
-### Пример программы реализующей счетчик с замыканием
-```
-deff f = lmbd (real n) {
+</code></pre><h3 id="-">Пример программы реализующей счетчик с замыканием</h3>
+<pre><code>deff f = lmbd (real n) {
     deff g = lmbd () {
-        hout(n);
-        f(n + 1)
+        hout(n)<span class="hljs-comment">;</span>
+        f(n + <span class="hljs-number">1</span>)
+    }
+}<span class="hljs-comment">;</span>
+
+deff <span class="hljs-keyword">cnt</span> = f(<span class="hljs-number">0</span>)<span class="hljs-comment">;</span>
+deff <span class="hljs-keyword">cnt</span> = <span class="hljs-keyword">cnt</span>()<span class="hljs-comment">;</span>
+deff <span class="hljs-keyword">cnt</span> = <span class="hljs-keyword">cnt</span>()<span class="hljs-comment">;</span>
+deff <span class="hljs-keyword">cnt</span> = <span class="hljs-keyword">cnt</span>()<span class="hljs-comment">;</span>
+deff <span class="hljs-keyword">cnt</span> = <span class="hljs-keyword">cnt</span>()<span class="hljs-comment">;</span>
+deff <span class="hljs-keyword">cnt</span> = <span class="hljs-keyword">cnt</span>()<span class="hljs-comment">;</span>
+deff <span class="hljs-keyword">cnt</span> = <span class="hljs-keyword">cnt</span>()
+</code></pre><h2 id="-">Пример программы реализующей факториал</h2>
+<pre><code>deff <span class="hljs-built_in">factor</span> = lmbd (<span class="hljs-built_in">real</span> n) {
+    <span class="hljs-keyword">if</span> (n &lt;= <span class="hljs-number">1</span>) {
+        <span class="hljs-number">1</span>
+    } <span class="hljs-keyword">else</span> {
+        n * <span class="hljs-built_in">factor</span>(n - <span class="hljs-number">1</span>)
     }
 };
 
-deff cnt = f(0);
-deff cnt = cnt();
-deff cnt = cnt();
-deff cnt = cnt();
-deff cnt = cnt();
-deff cnt = cnt();
-deff cnt = cnt()
-```
-
-## Пример программы реализующей факториал
-```
-deff factor = lmbd (real n) {
-    if (n <= 1) {
-        1
-    } else {
-        n * factor(n - 1)
-    }
-};
-
-real n = hin_real();
-hout(factor(6), factor(1), factor(n))
-real bee = 55555;
-```
+<span class="hljs-built_in">real</span> n = hin_real();
+hout(<span class="hljs-built_in">factor</span>(<span class="hljs-number">6</span>), <span class="hljs-built_in">factor</span>(<span class="hljs-number">1</span>), <span class="hljs-built_in">factor</span>(n))
+<span class="hljs-built_in">real</span> bee = <span class="hljs-number">55555</span>;
+</code></pre>
